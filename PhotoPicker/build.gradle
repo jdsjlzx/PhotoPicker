@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.github.dcendents.android-maven'
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
@@ -17,43 +18,48 @@ android {
     }
 
     buildTypes {
-//        release {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//        }
-    }
-}
-
-ext {
-    supportLibVersion = "25.1.0"
-}
-dependencies {
-
-    compile "com.android.support:appcompat-v7:$supportLibVersion"
-    provided "com.android.support:design:$supportLibVersion"
-//    provided "com.android.support:support-annotations:$supportLibVersion"
-    provided "com.android.support:recyclerview-v7:$supportLibVersion"
-    provided 'com.nineoldandroids:library:2.4.0'
-    compile 'com.yalantis:ucrop:2.2.0'
-    provided 'com.github.bumptech.glide:glide:3.7.0'
-
-
-}
-
-publish {
-    userOrg = 'longsh'
-    groupId = 'com.longsh'
-    artifactId = 'PhotoPicker'
-    publishVersion = '1.0.1'
-    desc = 'Photo Picker'
-    website = 'https://github.com/q805699513/PhotoPicker'
-}
-allprojects {
-    tasks.withType(Javadoc) {
-        options {
-            encoding "UTF-8"
-            charSet 'UTF-8'
-            links "http://docs.oracle.com/javase/7/docs/api"
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
+
+dependencies {
+    compile "com.android.support:appcompat-v7:25.1.0"
+    provided "com.android.support:design:25.1.0"
+    provided "com.android.support:recyclerview-v7:25.1.0"
+    provided 'com.nineoldandroids:library:2.4.0'
+    compile 'com.yalantis:ucrop:2.2.0'
+    provided 'com.github.bumptech.glide:glide:3.7.0'
+}
+
+// 指定编码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// 打包源码
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError  false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+// 制作文档(Javadoc)
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+

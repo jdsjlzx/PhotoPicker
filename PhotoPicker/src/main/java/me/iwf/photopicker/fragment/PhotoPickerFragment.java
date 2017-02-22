@@ -13,7 +13,6 @@ import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,12 +49,6 @@ import static me.iwf.photopicker.PhotoPicker.DEFAULT_COLUMN_NUMBER;
 import static me.iwf.photopicker.PhotoPicker.EXTRA_PREVIEW_ENABLED;
 import static me.iwf.photopicker.PhotoPicker.EXTRA_SHOW_GIF;
 import static me.iwf.photopicker.utils.MediaStoreHelper.INDEX_ALL_PHOTOS;
-
-/**
- * Created by donglua on 15/5/31.
- */
-
-// modify PhotoPickerFragment.java add Crop
 
 public class PhotoPickerFragment extends Fragment {
 
@@ -267,7 +260,6 @@ public class PhotoPickerFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("phtotlog", "isOpenCamera=" + isOpenCamera + ",requestCode=" + requestCode + ",resultCode=" + resultCode);
         if (isOpenCamera &&requestCode == ImageCaptureManager.REQUEST_TAKE_PHOTO && resultCode == RESULT_CANCELED) {
             getActivity().finish();
         }
@@ -289,7 +281,6 @@ public class PhotoPickerFragment extends Fragment {
             //如果是拍照不裁剪
             if (isOpenCamera) {
                 String path = captureManager.getCurrentPhotoPath();
-                Log.d("phtotlog", "path=" + path);
                 ((PhotoPickerActivity) getActivity()).PhotoCamear(path);
                 return;
             }
@@ -305,13 +296,11 @@ public class PhotoPickerFragment extends Fragment {
 
         if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             Uri resultUri = UCrop.getOutput(data);
-            Log.d("phtotlog", "resultUri=" + resultUri.getPath());
             ((PhotoPickerActivity) getActivity()).PhotoCamear(resultUri.getPath());
 
         } else if (resultCode == UCrop.RESULT_ERROR) {
             final Throwable cropError = UCrop.getError(data);
             Toast.makeText(getActivity(), "裁剪失败", Toast.LENGTH_SHORT).show();
-            Log.d("phtotlog", "cropError=" + cropError.getMessage());
             getActivity().finish();
         }
 

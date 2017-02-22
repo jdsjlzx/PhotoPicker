@@ -58,8 +58,6 @@ public class PhotoPickerActivity extends AppCompatActivity {
      * to prevent multiple calls to inflate menu
      */
 
-    // modify PhotoPickerActivity.java
-
     private boolean menuIsInflated = false;
 
     private boolean showGif = false;
