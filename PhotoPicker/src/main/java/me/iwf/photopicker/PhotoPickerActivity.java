@@ -163,7 +163,7 @@ public class PhotoPickerActivity extends AppCompatActivity {
         options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
         options.setHideBottomControls(true);
         options.setFreeStyleCropEnabled(false);
-        options.setCompressionQuality(90);
+        options.setCompressionQuality(100);
 
         options.setToolbarColor(ContextCompat.getColor(this,toolbarColor));
         options.setStatusBarColor(ContextCompat.getColor(this, statusbarColor));
