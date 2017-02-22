@@ -248,4 +248,4 @@ PhotoPicker.builder()
 * [PhotoPicker](https://github.com/donglua/PhotoPicker)
 
 ## 声明
-本库是对https://github.com/q805699513/PhotoPicker的修正，最新版本请访问原始地址。
+本库是对https://github.com/q805699513/PhotoPicker 的修正，最新版本请访问原始地址。
