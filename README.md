@@ -16,9 +16,22 @@
 
 ### Gradle
 
+Step 1. 在你的根build.gradle文件中增加JitPack仓库依赖。
+
+```groovy
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+```	
+
+Step 2. 在你的model的build.gradle文件中增加PhotoPicker依赖。
+
 ```groovy
 dependencies {
-    compile 'com.longsh:PhotoPicker:1.0.1'
+    compile 'com.github.jdsjlzx:PhotoPicker:1.0.0'
     
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
