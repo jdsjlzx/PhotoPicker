@@ -31,7 +31,7 @@ Step 2. 在你的model的build.gradle文件中增加PhotoPicker依赖。
 
 ```groovy
 dependencies {
-    compile 'com.github.jdsjlzx:PhotoPicker:1.0.0'
+    compile 'com.github.jdsjlzx:PhotoPicker:1.0.3'
     
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
