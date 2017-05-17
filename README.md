@@ -256,6 +256,10 @@ PhotoPicker.builder()
 
 ---
 
+### 添加两个（多个）FileProvider节点问题式
+
+参考:http://blog.csdn.net/jdsjlzx/article/details/68487013
+
 ## Thanks
 * [uCrop](https://github.com/Yalantis/uCrop)
 * [Glide](https://github.com/bumptech/glide)
