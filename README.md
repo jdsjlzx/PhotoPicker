@@ -256,7 +256,7 @@ PhotoPicker.builder()
 
 ---
 
-### 添加两个（多个）FileProvider节点问题式
+### 添加两个（多个）FileProvider节点问题
 
 参考:http://blog.csdn.net/jdsjlzx/article/details/68487013
 
