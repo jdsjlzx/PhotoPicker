@@ -89,8 +89,13 @@ public class ImagePagerFragment extends Fragment {
 
 
   public void setPhotos(List<String> paths, int currentItem, ArrayList<String> longData) {
-    this.paths.clear();
-    this.paths.addAll(paths);
+    if (paths == null) {
+        paths = new ArrayList<>();
+    } else {
+        this.paths.clear();
+        this.paths.addAll(paths);
+    }
+    
     this.currentItem = currentItem;
     mPagerAdapter.setLongData(longData);
     mViewPager.setCurrentItem(currentItem);
