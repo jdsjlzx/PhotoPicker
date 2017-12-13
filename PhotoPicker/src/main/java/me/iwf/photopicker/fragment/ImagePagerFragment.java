@@ -89,8 +89,8 @@ public class ImagePagerFragment extends Fragment {
 
 
   public void setPhotos(List<String> paths, int currentItem, ArrayList<String> longData) {
-    if (paths == null) {
-        paths = new ArrayList<>();
+    if (this.paths == null) {
+        this.paths = new ArrayList<>();
     } else {
         this.paths.clear();
         this.paths.addAll(paths);
