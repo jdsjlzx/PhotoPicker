@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -50,12 +51,14 @@ public class PreViewGridAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
+        final RequestOptions options = new RequestOptions();
+        options.centerCrop()
+                .placeholder(me.iwf.photopicker.R.drawable.__picker_ic_photo_black_48dp)
+                .error(me.iwf.photopicker.R.drawable.__picker_ic_broken_image_black_48dp);
         Glide.with(mContext)
                 .load(lstImageItem.get(position))
-                .centerCrop()
+                .apply(options)
                 .thumbnail(0.1f)
-                .placeholder(R.drawable.__picker_ic_photo_black_48dp)
-                .error(R.drawable.__picker_ic_broken_image_black_48dp)
                 .into(viewHolder.img);
 
         return view;

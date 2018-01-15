@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -65,13 +66,14 @@ public class PhotoPagerAdapter extends PagerAdapter {
         boolean canLoadImage = AndroidLifecycleUtils.canLoadImage(context);
 
         if (canLoadImage) {
-            mGlide.load(uri)
-                    .thumbnail(0.1f)
-                    .dontAnimate()
+            final RequestOptions options = new RequestOptions();
+            options.dontAnimate()
                     .dontTransform()
                     .override(800, 800)
                     .placeholder(R.drawable.__picker_ic_photo_black_48dp)
-                    .error(R.drawable.__picker_ic_broken_image_black_48dp)
+                    .error(R.drawable.__picker_ic_broken_image_black_48dp);
+            mGlide.setDefaultRequestOptions(options).load(uri)
+                    .thumbnail(0.1f)
                     .into(imageView);
         }
 
@@ -145,7 +147,7 @@ public class PhotoPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
-        Glide.clear((View) object);
+        mGlide.clear((View) object);
     }
 
     @Override
